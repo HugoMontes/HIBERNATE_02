@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<hibernate-mapping>
+	<class name="com.educomser.entity.Persona" table="personas"> 
+		<id name="idPersona" column="id_persona">
+			<generator class="identity"/>
+		</id>
+		<property name="nombre" column="nombre" type="string" length="50"/>
+		<property name="salario" column="salario" type="float"/>
+		<property name="seguro" column="seguro" type="boolean"/>
+		<property name="fechaNacimiento" column="fecha_nacimiento" type="date"/> 
+	</class>
+</hibernate-mapping>
+

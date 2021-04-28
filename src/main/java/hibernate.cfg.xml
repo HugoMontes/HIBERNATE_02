@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<hibernate-configuration>
+    <session-factory>
+        <!-- Datos de conexion -->
+        <property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="connection.url">jdbc:postgresql://localhost:5432/hibernatedb</property>
+        <property name="connection.username">postgres</property>
+        <property name="connection.password">123456</property>
+ 
+        <!-- Numero maximo de conexiones agrupadas, usualmente 10 -->
+        <property name="connection.pool_size">1</property>
+         <!-- Dialecto SQL -->
+        <property name="dialect">org.hibernate.dialect.DerbyDialect</property>
+         <!-- Habilitar la administración automatica del contexto de sesion de hibernate -->
+        <property name="current_session_context_class">thread</property>
+         <!-- Desactivar cache de segundo nivel -->
+        <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+         <!-- Mostrar en consola las consultas SQL ejecutadas -->
+        <property name="show_sql">true</property>
+        <!-- Modo de generar el esquema -->
+        <property name="hibernate.hbm2ddl.auto">update</property> 
+ 
+ 		<!-- Indicar archivos de mapeo -->
+        <mapping resource="com/educomser/entity/hbm/Persona.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>
