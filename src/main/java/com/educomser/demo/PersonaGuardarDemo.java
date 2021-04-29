@@ -14,13 +14,13 @@ public class PersonaGuardarDemo {
 		
 		// INSTANCIAR OBJETOS PERSONAS
 		Persona per1 = new Persona(); 
-		per1.setNombre("Juan");
+		per1.setNombre("Ramiro");
 		per1.setSalario(5000);
 		per1.setSeguro(true);
 		per1.setFechaNacimiento(format.parse("31/03/1995"));
 		
 		Persona per2 = new Persona();
-		per2.setNombre("Ana");
+		per2.setNombre("Maria");
 		per2.setSalario(2000);
 		per2.setSeguro(false);
 		per2.setFechaNacimiento(format.parse("20/07/1990"));

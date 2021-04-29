@@ -10,12 +10,11 @@ public class PersonaListarDemo {
 		// INSTANCIAR OBJETO DAO
 		PersonaDao perDao = new PersonaDao();
 		// RECUPERAR REGISTROS
-		System.out.println("LISTA DE PersonaS");
+		System.out.println("LISTA DE PERSONAS");
 		for (Persona e : perDao.findAll()) {
 			System.out.println(e.getIdPersona() + "-" + e.getNombre());
 		}
 		// CERRAR SESION
 		HibernateUtil.closeSessionFactory();
 	}
-
 }
