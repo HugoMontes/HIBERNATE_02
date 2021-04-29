@@ -2,12 +2,23 @@ package com.educomser.entity;
 
 import java.util.Date;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "personas")
 public class Persona {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_persona")
 	private int idPersona;
+	@Column(name = "nombre", length=50, nullable=false)
 	private String nombre;
+	@Column(name = "salario", columnDefinition="float default 0")
 	private float salario;
+	@Column(name = "seguro")
 	private boolean seguro;
+	@Column(name = "fecha_nacimiento", columnDefinition="date")
 	private Date fechaNacimiento;
 
 	public Persona() {

@@ -19,9 +19,9 @@
          <!-- Mostrar en consola las consultas SQL ejecutadas -->
         <property name="show_sql">true</property>
         <!-- Modo de generar el esquema -->
-        <property name="hibernate.hbm2ddl.auto">update</property> 
+        <property name="hibernate.hbm2ddl.auto">create</property> 
  
  		<!-- Indicar archivos de mapeo -->
-        <mapping resource="com/educomser/entity/hbm/Persona.hbm.xml"/>
+        <mapping class="com.educomser.entity.Persona"/>
     </session-factory>
 </hibernate-configuration>
