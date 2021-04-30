@@ -1,28 +1,32 @@
 package com.educomser.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "profesor")
+@Table(name = "tbl_profesores")
 public class Profesor {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_profesor")
 	private int id;
 	private String nombre;
 	private float sueldo;
-	@OneToOne(cascade = CascadeType.ALL)
-	@PrimaryKeyJoinColumn
-	private Direccion direccion;
+	@OneToMany(mappedBy = "profesor", cascade = CascadeType.ALL)
+	private List<Email> emails = new ArrayList<Email>();
 	
 	public Profesor() {
 	}
 	
-	public Profesor(int id, String nombre, float sueldo) {
-		this.id = id;
+	public Profesor(String nombre, float sueldo) {
 		this.nombre = nombre;
 		this.sueldo = sueldo;
 	}
 
+	// GENERAR METODOS GETTER Y SETTER
+	// GENERAR METODO TOSTRING() OMITIR EMAILS
 	public int getId() {
 		return id;
 	}
@@ -47,16 +51,16 @@ public class Profesor {
 		this.sueldo = sueldo;
 	}
 
-	public Direccion getDireccion() {
-		return direccion;
+	public List<Email> getEmails() {
+		return emails;
 	}
 
-	public void setDireccion(Direccion direccion) {
-		this.direccion = direccion;
+	public void setEmails(List<Email> emails) {
+		this.emails = emails;
 	}
 
 	@Override
 	public String toString() {
 		return "Profesor [id=" + id + ", nombre=" + nombre + ", sueldo=" + sueldo + "]";
-	}
+	}	
 }
