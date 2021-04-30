@@ -5,13 +5,15 @@ import javax.persistence.*;
 @Entity
 @Table(name = "direccion")
 public class Direccion {
-
 	@Id
 	@Column(name = "id_direccion")
 	private int id;
 	private String calle;
 	private String zona;
-	private int numero;
+	private int numero;	
+	@OneToOne(cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	private Profesor profesor;
 	
 	public Direccion() {
 	}
@@ -55,4 +57,18 @@ public class Direccion {
 	public void setNumero(int numero) {
 		this.numero = numero;
 	}
+
+	public Profesor getProfesor() {
+		return profesor;
+	}
+
+	public void setProfesor(Profesor profesor) {
+		this.profesor = profesor;
+	}
+
+	@Override
+	public String toString() {
+		return "Direccion [id=" + id + ", calle=" + calle + ", zona=" + zona + ", numero=" + numero + "]";
+	}	
+	
 }

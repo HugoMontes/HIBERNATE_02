@@ -17,11 +17,10 @@ public class Profesor {
 	public Profesor() {
 	}
 	
-	public Profesor(int id, String nombre, float sueldo, Direccion direccion) {
+	public Profesor(int id, String nombre, float sueldo) {
 		this.id = id;
 		this.nombre = nombre;
 		this.sueldo = sueldo;
-		this.direccion = direccion;
 	}
 
 	public int getId() {
@@ -54,5 +53,10 @@ public class Profesor {
 
 	public void setDireccion(Direccion direccion) {
 		this.direccion = direccion;
+	}
+
+	@Override
+	public String toString() {
+		return "Profesor [id=" + id + ", nombre=" + nombre + ", sueldo=" + sueldo + "]";
 	}
 }
