@@ -5,7 +5,7 @@ import com.educomser.entity.Email;
 import com.educomser.entity.Profesor;
 import com.educomser.util.HibernateUtil;
 
-public class UnoMuchosGuardarDemo {
+public class UnoMuchos01Demo {
 
 	public static void main(String[] args) {
 		// GUARDAR PROFESOR 1 CON SUS CORREOS
