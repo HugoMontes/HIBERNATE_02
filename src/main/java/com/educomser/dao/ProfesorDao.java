@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.persistence.Query;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -96,9 +98,7 @@ public class ProfesorDao {
 		Profesor profesor = null;
 		try {
 			startOperation();
-			String query = "FROM Profesor AS p " 
-					+ "JOIN FETCH p.emails " 
-					+ "WHERE p.id=:param1";
+			String query = "SELECT p FROM Profesor AS p INNER JOIN FETCH p.emails WHERE p.id=:param1";
 			profesor = (Profesor) session.createQuery(query).setParameter("param1", id).uniqueResult();
 			tx.commit();
 		} catch (HibernateException ex) {
@@ -108,6 +108,22 @@ public class ProfesorDao {
 			session.close();
 		}
 		return profesor;
+	}
+
+	
+	public List<Profesor> getAllProfesoresAndCorreos() {
+		List<Profesor> list = null;
+		try {
+			startOperation();
+			String query = "SELECT DISTINCT p FROM Profesor p INNER JOIN FETCH p.emails e";
+			list = session.createQuery(query, Profesor.class).getResultList();
+		} catch (HibernateException ex) {
+			tx.rollback();
+			Logger.getLogger(ProfesorDao.class.getName()).log(Level.SEVERE, null, ex);
+		} finally {
+			session.close();
+		}
+		return list;
 	}
 
 }
