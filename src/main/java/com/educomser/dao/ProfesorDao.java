@@ -103,7 +103,7 @@ public class ProfesorDao {
 			tx.commit();
 		} catch (HibernateException ex) {
 			tx.rollback();
-			System.out.println("Error al recuperar un profesor: " + ex);
+			Logger.getLogger(ProfesorDao.class.getName()).log(Level.SEVERE, null, ex);
 		} finally {
 			session.close();
 		}
