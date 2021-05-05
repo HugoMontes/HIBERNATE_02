@@ -91,4 +91,23 @@ public class ProfesorDao {
 		}
 		return list;
 	}
+
+	public Profesor getProfesorAndCorreosById(int id) {
+		Profesor profesor = null;
+		try {
+			startOperation();
+			String query = "FROM Profesor AS p " 
+					+ "JOIN FETCH p.emails " 
+					+ "WHERE p.id=:param1";
+			profesor = (Profesor) session.createQuery(query).setParameter("param1", id).uniqueResult();
+			tx.commit();
+		} catch (HibernateException ex) {
+			tx.rollback();
+			System.out.println("Error al recuperar un profesor: " + ex);
+		} finally {
+			session.close();
+		}
+		return profesor;
+	}
+
 }

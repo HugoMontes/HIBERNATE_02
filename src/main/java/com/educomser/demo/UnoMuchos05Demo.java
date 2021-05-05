@@ -15,7 +15,8 @@ public class UnoMuchos05Demo {
 		System.out.println("Ingrese el id del profesor:");
 		Scanner in = new Scanner(System.in);
 		int id = in.nextInt();
-		Profesor prof = profDao.findById(id);
+		// Profesor prof = profDao.findById(id);
+		Profesor prof = profDao.getProfesorAndCorreosById(id);
 		System.out.println("-- DATOS PROFESOR ");
 		System.out.println("Id: " + prof.getId());
 		System.out.println("Nombre: " + prof.getNombre());
