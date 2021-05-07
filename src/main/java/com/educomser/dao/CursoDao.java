@@ -8,10 +8,10 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.educomser.entity.Profesor;
+import com.educomser.entity.Curso;
 import com.educomser.util.HibernateUtil;
 
-public class ProfesorDao {
+public class CursoDao {
 
 	private Session session;
 	private Transaction tx;
@@ -21,70 +21,70 @@ public class ProfesorDao {
 		tx = session.beginTransaction();
 	}
 
-	public void save(Profesor profesor) {
+	public void save(Curso curso) {
 		try {
 			startOperation();
-			session.save(profesor);
+			session.save(curso);
 			tx.commit();
 		} catch (HibernateException ex) {
 			tx.rollback();
-			Logger.getLogger(ProfesorDao.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(CursoDao.class.getName()).log(Level.SEVERE, null, ex);
 		} finally {
 			session.close();
 		}
 	}
 
-	public void update(Profesor profesor) {
+	public void update(Curso curso) {
 		try {
 			startOperation();
-			session.update(profesor);
+			session.update(curso);
 			tx.commit();
 		} catch (HibernateException ex) {
 			tx.rollback();
-			Logger.getLogger(ProfesorDao.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(CursoDao.class.getName()).log(Level.SEVERE, null, ex);
 		} finally {
 			session.close();
 		}
 	}
 
-	public void delete(Profesor profesor) {
+	public void delete(Curso curso) {
 		try {
 			startOperation();
-			session.delete(profesor);
+			session.delete(curso);
 			tx.commit();
 		} catch (HibernateException ex) {
 			tx.rollback();
-			Logger.getLogger(ProfesorDao.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(CursoDao.class.getName()).log(Level.SEVERE, null, ex);
 		} finally {
 			session.close();
 		}
 	}
 
-	public Profesor findById(int id) {
-		Profesor profesor = null;
+	public Curso findById(int id) {
+		Curso curso = null;
 		try {
 			startOperation();
-			profesor = (Profesor) session.get(Profesor.class, id);
+			curso = (Curso) session.get(Curso.class, id);
 			tx.commit();
 		} catch (HibernateException ex) {
 			tx.rollback();
-			Logger.getLogger(ProfesorDao.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(CursoDao.class.getName()).log(Level.SEVERE, null, ex);
 		} finally {
 			session.close();
 		}
-		return profesor;
+		return curso;
 
 	}
 
-	public List<Profesor> findAll() {
-		List<Profesor> list = null;
+	public List<Curso> findAll() {
+		List<Curso> list = null;
 		try {
 			startOperation();
-			list = session.createQuery("from Profesor", Profesor.class).list();
+			list = session.createQuery("from Curso", Curso.class).list();
 			tx.commit();
 		} catch (HibernateException ex) {
 			tx.rollback();
-			Logger.getLogger(ProfesorDao.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(CursoDao.class.getName()).log(Level.SEVERE, null, ex);
 		} finally {
 			session.close();
 		}

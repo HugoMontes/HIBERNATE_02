@@ -22,8 +22,7 @@
         <property name="hibernate.hbm2ddl.auto">update</property> 
  
  		<!-- Indicar archivos de mapeo -->
-        <mapping package="com.educomser.entity.Persona"/>
-        <mapping class="com.educomser.entity.Direccion"/>
+        <mapping class="com.educomser.entity.Curso"/>
         <mapping class="com.educomser.entity.Profesor"/>
     </session-factory>
 </hibernate-configuration>

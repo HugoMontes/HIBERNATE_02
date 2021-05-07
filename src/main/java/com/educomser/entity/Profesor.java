@@ -1,26 +1,33 @@
 package com.educomser.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "profesor")
+@Table(name = "profesores")
 public class Profesor {
+	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_profesor")
 	private int id;
-	private String nombre;
-	private float sueldo;
-	@OneToOne(cascade = CascadeType.ALL)
-	@PrimaryKeyJoinColumn
-	private Direccion direccion;
+	
+	@Column(name = "nombre_profesor", nullable = false, unique = true)	
+	private String nombreProfesor;
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "profesor_curso", 
+	         joinColumns = { @JoinColumn(name = "profesor_id") }, 
+	         inverseJoinColumns = { @JoinColumn(name = "curso_id") })
+	private List<Curso> cursos = new ArrayList<Curso>();
 	
 	public Profesor() {
 	}
 	
-	public Profesor(int id, String nombre, float sueldo) {
-		this.id = id;
-		this.nombre = nombre;
-		this.sueldo = sueldo;
+	public Profesor(String nombreProfesor) {
+		this.nombreProfesor = nombreProfesor;
 	}
 
 	public int getId() {
@@ -31,32 +38,24 @@ public class Profesor {
 		this.id = id;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getNombreProfesor() {
+		return nombreProfesor;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombreProfesor(String nombreProfesor) {
+		this.nombreProfesor = nombreProfesor;
 	}
 
-	public float getSueldo() {
-		return sueldo;
+	public List<Curso> getCursos() {
+		return cursos;
 	}
 
-	public void setSueldo(float sueldo) {
-		this.sueldo = sueldo;
-	}
-
-	public Direccion getDireccion() {
-		return direccion;
-	}
-
-	public void setDireccion(Direccion direccion) {
-		this.direccion = direccion;
+	public void setCursos(List<Curso> cursos) {
+		this.cursos = cursos;
 	}
 
 	@Override
 	public String toString() {
-		return "Profesor [id=" + id + ", nombre=" + nombre + ", sueldo=" + sueldo + "]";
+		return "Profesor [id=" + id + ", nombreProfesor=" + nombreProfesor + "]";
 	}
 }
