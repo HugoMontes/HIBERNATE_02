@@ -15,7 +15,7 @@ public class MuchosMuchos01 {
 		// Instanciar tres cursos
 		Curso cur1 = new Curso("JAVA");
 		Curso cur2 = new Curso("PHP");
-		Curso cur3 = new Curso("MYSQL");
+		Curso cur3 = new Curso("PYTHON");
 		// Asignar cursos a profesores
 		prof1.getCursos().add(cur1);
 		prof1.getCursos().add(cur2);
