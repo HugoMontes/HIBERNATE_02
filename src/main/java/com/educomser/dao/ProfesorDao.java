@@ -90,4 +90,35 @@ public class ProfesorDao {
 		}
 		return list;
 	}
+
+	public Profesor getProfesorAndCursosById(int id) {
+		Profesor profesor = null;
+		try {
+			startOperation();
+			;
+			String query = "SELECT p FROM Profesor AS p LEFT JOIN FETCH p.cursos WHERE p.id=:param1";
+			profesor = (Profesor) session.createQuery(query).setParameter("param1", id).uniqueResult();
+			tx.commit();
+		} catch (HibernateException ex) {
+			tx.rollback();
+			Logger.getLogger(ProfesorDao.class.getName()).log(Level.SEVERE, null, ex);
+		} finally {
+			session.close();
+		}
+		return profesor;
+	}
+
+	public List<Profesor> getAllProfesoresAndCursos() {
+		List<Profesor> list = null;
+		try {
+			startOperation();
+			String query = "SELECT DISTINCT p FROM Profesor p LEFT JOIN FETCH p.cursos c ORDER BY p.id";
+			list = session.createQuery(query, Profesor.class).getResultList();
+		} catch (HibernateException ex) {
+			Logger.getLogger(ProfesorDao.class.getName()).log(Level.SEVERE, null, ex);
+		} finally {
+			session.close();
+		}
+		return list;
+	}
 }
